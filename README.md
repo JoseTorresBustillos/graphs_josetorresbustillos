@@ -1,7 +1,8 @@
 # graphs_josetorresbustillos
 
 A Python library containing the assignment's Dijkstra shortest path
-implementation and heap queue utilities. Packaged by Jose Torres.
+implementation, breadth-first traversal, and heap queue utilities.
+Packaged by Jose Torres.
 
 ## Installation
 
@@ -47,6 +48,22 @@ supplied script starts at vertex 0 and expects every destination to also
 occur as a source. Examples 1 through 3 satisfy those assumptions; example
 4 requires choosing source 101 and adding vertex 404 with empty adjacency.
 
+## Bonus: Breadth-first Traversal
+
+`sp.bfs(graph, source)` returns reachable vertices in breadth-first order.
+It ignores edge weights, visits each vertex once, and handles cycles and
+self-loops. Neighbors are visited in dictionary insertion order. Missing
+destination keys are treated as sinks; a missing source raises `ValueError`.
+Disconnected vertices are omitted. Runtime is O(V + E) for the reachable
+vertices and edges, with O(V) additional memory.
+
+```python
+from graphs_josetorresbustillos import sp
+
+graph = {0: {1: 4, 2: 10}, 1: {3: 2}, 2: {3: 1}, 3: {}}
+assert sp.bfs(graph, 0) == [0, 1, 2, 3]
+```
+
 ## Development
 
 The public repository uses `main` for releases and `dev` for development.
@@ -54,8 +71,8 @@ Submit pull requests from `dev` to the protected `main` branch.
 For local development, use `python -m pip install -e .`.
 
 The original algorithms, attribution, graph data, and assignment directions
-are retained below and in the source tree. The optional bonus algorithm is
-not included.
+are retained below and in the source tree. Breadth-first traversal is the
+additional algorithm for the optional bonus.
 
 # Overview 
 
