@@ -1,3 +1,62 @@
+# graphs_josetorresbustillos
+
+A Python library containing the assignment's Dijkstra shortest path
+implementation and heap queue utilities. Packaged by Jose Torres.
+
+## Installation
+
+Requires Python 3.9 or newer. Install from this repository:
+
+```sh
+python -m pip install git+https://github.com/JoseTorresBustillos/graphs_josetorresbustillos.git
+```
+
+Or install from a local checkout with `python -m pip install .`.
+No runtime dependencies are required. This package is not published on PyPI.
+
+## Usage
+
+```python
+from graphs_josetorresbustillos import sp
+
+graph = {0: {1: 4, 2: 10}, 1: {2: 3}, 2: {}}
+distances, paths = sp.dijkstra(graph, 0)
+assert distances == {0: 0, 1: 4, 2: 7}
+assert paths[2] + [2] == [0, 1, 2]
+```
+
+Graphs are adjacency dictionaries mapping vertices to dictionaries of
+neighbors and nonnegative edge weights. Include all vertices as keys,
+including destinations with no outgoing edges, and choose an existing
+source. Vertex labels must be mutually comparable when heap priorities tie.
+Distances must remain below `sys.maxsize`, which represents unreachable
+vertices. The supplied algorithm does not validate these input conditions.
+
+The returned path lists contain predecessors, excluding the destination.
+The source path is empty; unreachable vertices have no path entry.
+For undirected graphs, include each edge in both directions.
+
+After installation, run the supplied command-line example from this checkout:
+
+```sh
+python test.py data/example1.txt
+```
+
+Each input line contains `source destination weight` as integers. The
+supplied script starts at vertex 0 and expects every destination to also
+occur as a source. Examples 1 through 3 satisfy those assumptions; example
+4 requires choosing source 101 and adding vertex 404 with empty adjacency.
+
+## Development
+
+The public repository uses `main` for releases and `dev` for development.
+Submit pull requests from `dev` to the protected `main` branch.
+For local development, use `python -m pip install -e .`.
+
+The original algorithms, attribution, graph data, and assignment directions
+are retained below and in the source tree. The optional bonus algorithm is
+not included.
+
 # Overview 
 
 The goal of this assignment is to assess your understanding of how to package a software library, as discussed in class.
@@ -19,7 +78,7 @@ You should create a public GitHub repository for your project to allow others to
 To receive credit for this assignment, update the README file and add the URL of your public GitHub repository below.
 
 ```
-URL for your GitHub repository: 
+URL for your GitHub repository: https://github.com/JoseTorresBustillos/graphs_josetorresbustillos
 ```
 
 The expected structure for the GitHub repository is the following: 
